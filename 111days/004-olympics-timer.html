@@ -1,0 +1,40 @@
+<!--
+終了までの残り時間を表示するタイマー
+start: 2024-07-26T00:00:00+09:00
+end: 2024-08-12T00:00:00+09:00
+progress bar -->
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <p></p>
+    <progress id="progress" max="100" value="0"></progress>
+    <script>
+      const update = () => {
+        const start = new Date('2024-07-26T00:00:00+09:00').getTime()
+        const end = new Date('2024-08-12T00:00:00+09:00').getTime()
+        const now = new Date().getTime()
+        const progress = ((now - start) / (end - start)) * 100
+        document.getElementById('progress').value = progress
+        const remaining = end - now
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24))
+        const hours = Math.floor(
+          (remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        )
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000)
+        document.querySelector(
+          'p'
+        ).textContent = `残り${days}日${hours}時間${minutes}分${seconds}秒`
+      }
+
+      setInterval(update, 1000)
+    </script>
+  </body>
+</html>
