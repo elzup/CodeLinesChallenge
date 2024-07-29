@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@mdx-js/react": "^3.0.1",
     "eslint": "^9.7.0"
   },
   "devDependencies": {
