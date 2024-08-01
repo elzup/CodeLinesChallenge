@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- p5 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"
+      integrity="sha512-d6sc8kbZEtA2LwB9m/ck0FhvyUwVfdmvTeyJRprmj7Wg9wRFtHDIpr6qk4g/y3Ix3O9I6KHIv6SGu9f7RaP1Gw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 8方向にランダムウォークする
+      let x = 200
+      let y = 200
+
+      function setup() {
+        createCanvas(400, 400)
+        background(220)
+      }
+
+      function draw() {
+        // Draw current position
+        fill(255, 255, 255, 10)
+        rect(0, 0, width, height)
+        fill(255, 0, 0)
+        ellipse(x, y, 2, 2)
+
+        // Generate a random number between 0 and 7
+        let direction = floor(random(8))
+
+        // Define the movement library
+        const lib = [
+          [4, 0], // Right
+          [-4, 0], // Left
+          [0, 4], // Down
+          [0, -4], // Up
+          [4, 4], // Diagonal right-down
+          [-4, -4], // Diagonal left-up
+          [4, -4], // Diagonal right-up
+          [-4, 4], // Diagonal left-down
+        ]
+
+        // Update position based on the random direction
+        if (direction >= 0 && direction < lib.length) {
+          x += lib[direction][0]
+          y += lib[direction][1]
+        }
+      }
+    </script>
+  </body>
+</html>
