@@ -9,20 +9,31 @@ const shuffle = (arr) => {
   return arr
 }
 
-const range = (n) => [...Array(n).keys()]
+const range = (n) => Array.from({ length: n }, (_, i) => i)
 
 const isMagic = (magic) => {
-  return (
-    magic[0] + magic[1] + magic[2] === 15 &&
-    magic[3] + magic[4] + magic[5] === 15 &&
-    magic[6] + magic[7] + magic[8] === 15 &&
-    magic[0] + magic[3] + magic[6] === 15 &&
-    magic[1] + magic[4] + magic[7] === 15 &&
-    magic[2] + magic[5] + magic[8] === 15 &&
-    magic[0] + magic[4] + magic[8] === 15 &&
-    magic[2] + magic[4] + magic[6] === 15
+  const rows = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+  ]
+  const cols = [
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+  ]
+  const diagonals = [
+    [0, 4, 8],
+    [2, 4, 6],
+  ]
+
+  const sums = [...rows, ...cols, ...diagonals].map((indices) =>
+    indices.reduce((sum, index) => sum + magic[index], 0)
   )
+
+  return sums.every((sum) => sum === 15)
 }
+
 const genMagic = () => shuffle(range(9).map((i) => i + 1))
 for (let i = 0; ; i++) {
   const magic = genMagic()
