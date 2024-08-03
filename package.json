@@ -1,8 +1,9 @@
 {
   "dependencies": {
     "@mdx-js/react": "^3.0.1",
-    "@types/node": "^22.1.0",
+    "@types/node": "^20.14.14",
     "eslint": "^9.7.0",
+    "typescript": "^5.6.0-dev.20240802",
     "uuidv7": "^1.0.1"
   },
   "devDependencies": {
