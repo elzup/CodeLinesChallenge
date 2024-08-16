@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24 mojiban</title>
+
+    <style>
+      body {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        gap: 5px;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+      }
+      .num {
+        position: absolute;
+        transform: rotate(calc(var(--i) * 15deg - 180deg)) translateY(80px)
+          rotate(calc(-1 * var(--i) * 15deg + 180deg));
+        left: 50%;
+        top: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="clock">
+      <div id="hour"></div>
+      <div id="minute"></div>
+      <div id="second"></div>
+      <div class="num" style="--i: 1">1</div>
+      <div class="num" style="--i: 2">2</div>
+      <div class="num" style="--i: 3">3</div>
+      <div class="num" style="--i: 4">4</div>
+      <div class="num" style="--i: 5">5</div>
+      <div class="num" style="--i: 6">6</div>
+      <div class="num" style="--i: 7">7</div>
+      <div class="num" style="--i: 8">8</div>
+      <div class="num" style="--i: 9">9</div>
+      <div class="num" style="--i: 10">10</div>
+      <div class="num" style="--i: 11">11</div>
+      <div class="num" style="--i: 12">12</div>
+      <div class="num" style="--i: 13">13</div>
+      <div class="num" style="--i: 14">14</div>
+      <div class="num" style="--i: 15">15</div>
+      <div class="num" style="--i: 16">16</div>
+      <div class="num" style="--i: 17">17</div>
+      <div class="num" style="--i: 18">18</div>
+      <div class="num" style="--i: 19">19</div>
+      <div class="num" style="--i: 20">20</div>
+      <div class="num" style="--i: 21">21</div>
+      <div class="num" style="--i: 22">22</div>
+      <div class="num" style="--i: 23">23</div>
+      <div class="num" style="--i: 24">24</div>
+    </div>
+  </body>
+</html>
