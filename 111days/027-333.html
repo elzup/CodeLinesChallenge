@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://cdn.jsdelivr.net/npm/noisejs@2.1.0/index.min.js"></script>
+    <title>3D Cube Grid with Noise Animation</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.167.1/build/three.module.js"
+        }
+      }
+    </script>
+    <script type="module">
+      import * as THREE from 'three'
+
+      const noise = new Noise(0)
+
+      const scene = new THREE.Scene()
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        innerWidth / innerHeight,
+        0.1,
+        1000
+      )
+      const renderer = new THREE.WebGLRenderer({ antialias: false })
+      renderer.setSize(innerWidth, innerHeight)
+      document.body.appendChild(renderer.domElement)
+
+      const cubes = []
+
+      const geometry = new THREE.BoxGeometry(1, 1, 1)
+
+      //   3x3x3 boxes
+      for (let x = -1; x < 2; x++) {
+        for (let y = -1; y < 2; y++) {
+          for (let z = -1; z < 2; z++) {
+            const material = new THREE.MeshBasicMaterial({ color: 0xffffff })
+            const cube = new THREE.Mesh(geometry, material)
+            cube.position.set(x * 2, y * 2, z * 2)
+            scene.add(cube)
+            cubes.push(cube)
+          }
+        }
+      }
+
+      camera.position.z = 10
+      let frame = 0
+
+      const animate = (time) => {
+        requestAnimationFrame(animate)
+
+        frame++
+        scene.rotation.y = Math.sin(time * 0.001)
+        if (frame % 10 === 0) {
+          cubes.forEach((cube) => {
+            const noiseValue = noise.simplex3(
+              cube.position.x * 0.1 + time * 0.001,
+              cube.position.y * 0.1 + time * 0.001,
+              cube.position.z * 0.1 + time * 0.001
+            )
+            cube.material.color.setHSL((noiseValue + 1) / 2, 1, 0.5)
+          })
+        }
+
+        renderer.render(scene, camera)
+      }
+
+      animate(0)
+    </script>
+  </body>
+</html>
