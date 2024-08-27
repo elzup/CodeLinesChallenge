@@ -6,7 +6,5 @@ const text =
 const rate = 1 / 5
 const randDrop = (c: string) => (Math.random() < rate ? '🔸' : c)
 
-const range = (n: number) => [...Array(n).keys()]
-
 console.log(text)
 console.log([...text].map(randDrop).join(''))
