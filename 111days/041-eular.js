@@ -1,6 +1,19 @@
 // オイラーの素数生成式の41の部分を別の数字にしてどうなるか
 
+const start = Date.now()
+
 const range = (n) => [...Array(n).keys()]
+const tMax = 1000000
+const xMax = 50
+
+const memoIsPrime = {}
+
+const isPrimeMemo = (n) => {
+  if (n in memoIsPrime) return memoIsPrime[n]
+  const prime = isPrime(n)
+  memoIsPrime[n] = prime
+  return prime
+}
 
 const isPrime = (n) => {
   if (n < 2) return false
@@ -16,20 +29,32 @@ const euler = (t) => {
   return (n) => n ** 2 + n + t
 }
 
-const nums = range(10000).map((i) => {
-  const f = euler(i)
-  const ds = range(50).map((v) => isPrime(f(v)))
+const nums = range(tMax).map((t) => {
+  const f = euler(t)
+  const ds = range(xMax).map((v) => isPrimeMemo(f(v)))
+  const c = ds.findIndex((v) => !v)
 
   return {
-    i,
+    t,
     n: ds.filter((v) => v).length,
-    text: `${i}`.padEnd(5, ' ') + ds.map((v) => (v ? 'o' : '_')).join(''),
+    ds,
+    c,
   }
 })
 
-nums.sort((a, b) => b.n - a.n)
+// nums.sort((a, b) => b.n - a.n) // 素数の割合
+nums.sort((a, b) => b.c - a.c) // 最初に素数の連続する回数
 
+const oxFmt = (a) => a.map((v) => (v ? 'o' : '_')).join('')
 nums
   .splice(0, 10)
-  .map((v) => v.text)
-  .map((v) => console.log(v))
+  .map(
+    ({ t, ds, n }) =>
+      `${t}`.padEnd(7, ' ') +
+      `${((n / xMax) * 100).toFixed(2)}`.padStart(5, ' ') +
+      '% ' +
+      oxFmt(ds)
+  )
+  .forEach((v) => console.log(v))
+
+console.log(Date.now() - start + 'ms')
