@@ -38,7 +38,7 @@ const total = 10 ** 4 * ops.length
 
 // sort
 Object.entries(res)
-  .filter(([key, value]) => value >= 20)
+  // .filter(([key, value]) => value >= 20)
   .sort((a, b) => Number(b[0]) - Number(a[0])) // by value
   // .sort((a, b) => Number(b[1]) - Number(a[1])) // by count
   .filter((a, i) => i < 100)
