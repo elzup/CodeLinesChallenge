@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>whites</title>
+    <style>
+      body {
+        background: black;
+      }
+      #main {
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-gap: 5px;
+        padding: 5px;
+        gap: 1px;
+      }
+      #main div {
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type="module">
+      const len = Math.ceil(Math.cbrt(200))
+      for (let r = 255; r > 255 - len; r--) {
+        for (let g = 255; g > 255 - len; g--) {
+          for (let b = 255; b > 255 - len; b--) {
+            const hex = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`
+            const div = document.createElement('div')
+            div.style.backgroundColor = `${hex}`
+            div.innerText = hex
+            document.getElementById('main').appendChild(div)
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
