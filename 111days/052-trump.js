@@ -3,6 +3,15 @@
 
 const range = (n) => [...Array(n).keys()]
 const cards = range(52)
+const printCards = (cards) => {
+  const suits = ['♠', '♡', '♢', '♣']
+  const ranks = range(13).map((i) => i + 1)
+  const marks = suits.flatMap((suit) =>
+    ranks.map((rank) => `${suit}${String(rank).padEnd(2, ' ')}`)
+  )
+  const marks2 = cards.map((i) => marks[i])
+  console.log(marks2.join(' '))
+}
 
 const riffle = (cards) => {
   const n = cards.length
@@ -34,6 +43,7 @@ const calcDisorderKendall = (cards1, cards2) => {
 shuffled = [...cards]
 for (let i = 0; i < 20; i++) {
   shuffled.sort(() => Math.random() - 0.5)
+  printCards(shuffled)
   const disorder = calcDisorderKendall(cards, shuffled)
   console.log(disorder)
 }
