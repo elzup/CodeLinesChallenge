@@ -2,15 +2,15 @@
 // Kendallの順位相関係数
 
 const range = (n) => [...Array(n).keys()]
-const cards = range(52)
+const cards = range(52).map((i) => ({
+  suit: Math.floor(i / 13),
+  num: (i % 13) + 1,
+}))
+const suits = ['♠', '♡', '♢', '♣']
+const ranks = range(13).map((i) => i + 1)
+const print = (card) => `${suits[card.suit]}${String(card.num).padEnd(2, ' ')}`
 const printCards = (cards) => {
-  const suits = ['♠', '♡', '♢', '♣']
-  const ranks = range(13).map((i) => i + 1)
-  const marks = suits.flatMap((suit) =>
-    ranks.map((rank) => `${suit}${String(rank).padEnd(2, ' ')}`)
-  )
-  const marks2 = cards.map((i) => marks[i])
-  console.log(marks2.join(' '))
+  console.log(cards.map(print).join(' '))
 }
 
 const riffle = (cards) => {
