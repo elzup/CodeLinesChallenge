@@ -21,10 +21,10 @@ const print = (months) => {
   months.forEach((d, m) => {
     const days = range(d).map((i) => i + 1)
 
-    console.log(`M${m + 1}:` + days.join(''))
-    days.slice(25).forEach((d) => {
-      console.log(d)
-    })
+    console.log(`M${m + 1}: `.padStart(5, ' ') + days.join(''))
+    // days.slice(25).forEach((d) => {
+    //   console.log(d)
+    // })
   })
 }
 print(months)
