@@ -7,10 +7,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./111days",
     "resolveJsonModule": true,
     "sourceMap": true
   },
-  "include": ["src/**/*"],
+  "include": ["111days/**/*", "src/074-route-flip-pair.js"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
