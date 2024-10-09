@@ -25,8 +25,7 @@ const kaprekar = (k) => {
       .sort((a, b) => b - a)
 
     if (nums.every((v, i) => l[i] - l[k - i - 1] === v)) {
-      const r = l.reverse().join('')
-      console.log(ns, `${l} - ${r}`)
+      console.log(ns, `${l.join('')} - ${l.reverse().join('')}`)
     }
   })
 }
